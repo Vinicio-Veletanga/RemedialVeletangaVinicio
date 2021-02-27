@@ -15,6 +15,9 @@ public class Categoria implements Serializable{
 	private int id;
 	private String tipo;
 	private static final long serialVersionUID = 1L;
+	public  Categoria() {
+		
+	}
 	public int getId() {
 		return id;
 	}

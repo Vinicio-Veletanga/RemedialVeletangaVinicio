@@ -16,20 +16,24 @@ import javax.persistence.OneToOne;
 
 @Entity(name="libro")
 public class Libro implements Serializable{
+
+private static final long serialVersionUID = 1L;
 @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 @Column(name="idl")
 private int idl;
 private String titulo;
 private String editorial;
-@OneToMany(mappedBy="autor")
+@OneToMany(mappedBy="libro",cascade = CascadeType.ALL)
 private Set<Autor> autores;
-private static final long serialVersionUID = 1L;
 
 @OneToOne(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
 @JoinColumn(name="id")
 private Categoria categoria;
 
+public Libro() {
+	
+}
 public int getIdl() {
 	return idl;
 }
@@ -69,12 +73,11 @@ public Categoria getCategoria() {
 public void setCategoria(Categoria categoria) {
 	this.categoria = categoria;
 }
-
 @Override
 public String toString() {
 	return "Libro [idl=" + idl + ", titulo=" + titulo + ", editorial=" + editorial + ", autores=" + autores
 			+ ", categoria=" + categoria + "]";
 }
-
+ 
 
 }

@@ -4,7 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name="autor")
 public class Autor implements Serializable{
@@ -15,6 +18,19 @@ public class Autor implements Serializable{
 	private String cedula;
 	private String nombre;
 	private String apellido;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="autor")
+	private Libro libro;
+	
+	public Libro getLibro() {
+		return libro;
+	}
+	public void setLibro(Libro libro) {
+		this.libro = libro;
+	}
+	public Autor() {
+		
+	}
 	public String getCedula() {
 		return cedula;
 	}
@@ -35,9 +51,9 @@ public class Autor implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Autor [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + "]";
+		return "Autor [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", libro=" + libro + "]";
 	}
-	
+	 
 	
 
 }
